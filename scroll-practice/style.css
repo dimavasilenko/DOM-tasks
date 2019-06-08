@@ -1,0 +1,35 @@
+html {
+  background-color: hsla(0, 100%, 90%);
+}
+
+#content {
+  position: relative;
+  width: 80%;
+  margin: auto;
+}
+
+article {
+  margin: 4em 0;
+  padding: 1em 0;
+}
+
+h1 {
+  font-size: 3em;
+  color: #806973;
+}
+
+p {
+  font-family: georgia, serif;
+  line-height: 1.5em;
+}
+
+#showScroll {
+  position: fixed;
+  font-size: 24px ;
+  margin-left: -100px;
+  background-color: black;
+  color: white;
+}
+
+
+

@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <style>
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        
+        td,
+        th {
+            border: 1px solid black;
+            padding: 3px;
+            text-align: center;
+        }
+        
+        th {
+            font-weight: bold;
+            background-color: #E6E6E6;
+        }
+    </style>
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+
+<div id="calendar"></div>
+
+<script>
+    function createCalendar(id, year, month) {
+        const amountOfDAys = getDaysInMonth(month, year);
+
+        const days = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
+
+        const table = [days];
+
+        let currentRow = 1;
+
+        const container = document.createElement('div');
+        container.id = id;
+
+        let content = `<div id="${id}"><table><tbody>`;
+
+        for (let i = 1; i <= amountOfDAys; i++) {
+            const currentDate = new Date(year, month - 1, i);
+            let currentDay = currentDate.getDay();
+
+            if (currentDay === 0) {
+                currentDay = 7;
+            }
+
+            if (table[currentRow] === undefined) {
+                table[currentRow] = [];
+            }
+
+            table[currentRow][currentDay - 1] = i;
+
+            if (currentDay === 7) {
+                currentRow++;
+            }
+        }
+        for (let i = 0; i < table.length; i++) {
+            content += `<tr>`;
+
+            for (let j = 0; j < table[i].length; j++) {
+                let currentElement = table[i][j];
+                let cellTag;
+
+                if (i === 0) {
+                    cellTag = 'th';
+                } else {
+                    cellTag = 'td';
+                }
+
+                if (currentElement === undefined) {
+                    currentElement = '';
+                }
+
+                content += `<${cellTag}>${currentElement}</${cellTag}>`;
+            }
+
+            content += `</tr>`;
+        }
+        content += `</tbody></table>`;
+
+        function getDaysInMonth(month, year) {
+            return new Date(year, month, 0).getDate();
+        }
+
+        container.innerHTML = content;
+        document.body.append(container);
+        
+    }
+
+
+    createCalendar("calendar", 2012, 9);
+    createCalendar("calendar", 2019, 10);
+</script>
+
+</body>
+
+</html>

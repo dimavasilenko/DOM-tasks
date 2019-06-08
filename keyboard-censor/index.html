@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>
+    <input type="text" onkeyup="return checkLetter(this);"/>
+</label>
+<script>
+    function checkLetter(input) {
+        let value = input.value;
+        const rep = /[qwxQWX]/;
+        if (rep.test(value)) {
+            value = value.replace(rep, '');
+            input.value = value;
+        }
+    }
+</script>
+</body>
+</html>
